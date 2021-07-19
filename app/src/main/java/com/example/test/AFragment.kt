@@ -21,9 +21,20 @@ class AFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding: FragmentABinding = DataBindingUtil.inflate(inflater , R.layout.fragment_a, container, false)
+        val binding: FragmentABinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_a, container, false)
 
+        binding.btnOk.setOnClickListener() {
 
+            val personName: String = binding.tfName.text.toString()
+
+            // val bundle = bundleOf(Pair("same", personName))
+
+            // Navigation.findNavController(it).navigate(R.id.action_AFragment_to_BFragment)
+
+            val action: NavDirections = AFragmentDirections.actionAFragmentToBFragment(personName)
+            Navigation.findNavController(it).navigate(action)
+        }
         return binding.root
     }
 
